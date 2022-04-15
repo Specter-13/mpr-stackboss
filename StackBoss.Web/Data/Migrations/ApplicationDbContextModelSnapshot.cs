@@ -226,15 +226,71 @@ namespace StackBoss.Web.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("RiskCategory")
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Consequences")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RiskName")
+                    b.Property<DateTime>("ModifiedStateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Owner")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Probability")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Reaction")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ReactionDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RiskEvaluation")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Starters")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("State")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Threat")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("RiskTable");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Category = 2,
+                            Consequences = 4,
+                            CreatedDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Test bussiness risk",
+                            ModifiedStateDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Risk of bankruptcy",
+                            Owner = "Ing. Jozko Mrkvicka",
+                            Probability = 3,
+                            Reaction = "Change staff, project reset",
+                            ReactionDate = new DateTime(2022, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RiskEvaluation = 12,
+                            Starters = "Project wasn't finished successfuly",
+                            State = 1,
+                            Threat = "Loosing all of money"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

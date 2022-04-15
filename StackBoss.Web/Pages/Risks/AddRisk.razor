@@ -1,0 +1,156 @@
+﻿@page "/AddRisk"
+@inject RiskService riskService
+@inject NavigationManager NavigationManager
+
+<h2>Add Risk</h2>
+<hr />
+
+
+
+<div class="container">
+<EditForm Model="@Risk" OnValidSubmit="@Save">
+        <DataAnnotationsValidator/>
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label class="w-100">
+                        Name:
+                        <InputText @bind-Value="@Risk.Name" class="form-control"/>
+                        <small class="form-text text-danger">
+                            <ValidationMessage For="@(() => Risk.Name)"/>
+                        </small>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="w-100">
+                        Category:
+                        <InputSelect @bind-Value="@Risk.Category" class="form-control">
+                               @foreach (var cat in Enum.GetValues(typeof(Category)))
+                                {
+                                    <option value="@cat">@cat</option>
+                                }
+                        </InputSelect>
+                          <small class="form-text text-danger">
+                            <ValidationMessage For="@(() => Risk.Name)"/>
+                        </small>
+                    </label>
+                </div>
+
+                 <div class="form-group">
+                    <label class="w-100">
+                        Threat:
+                        <InputText @bind-Value="@Risk.Threat" class="form-control"/>
+                    </label>
+                </div>
+
+                 <div class="form-group">
+                    <label class="w-100">
+                        Starters:
+                        <InputText @bind-Value="@Risk.Starters" class="form-control"/>
+                    </label>
+                </div>
+
+                 <div class="form-group">
+                    <label class="w-100">
+                        Reaction:
+                        <InputText @bind-Value="@Risk.Reaction" class="form-control"/>
+                    </label>
+                </div>
+
+                 <div class="form-group">
+                    <label class="w-100">
+                        Owner:
+                        <InputText @bind-Value="@Risk.Owner" class="form-control"/>
+                    </label>
+                </div>
+
+                  <div class="form-group">
+                    <label class="w-100">
+                        Probability:
+                        <InputSelect @bind-Value="@Risk.Probability" class="form-control">
+                               @foreach (var cat in Enum.GetValues(typeof(Probability)))
+                                {
+                                    <option value="@cat">@cat</option>
+                                }
+                        </InputSelect>
+                    </label>
+                </div>
+
+                 <div class="form-group">
+                    <label class="w-100">
+                        Consequences:
+                        <InputSelect @bind-Value="@Risk.Consequences" class="form-control">
+                               @foreach (var cat in Enum.GetValues(typeof(Consequences)))
+                                {
+                                    <option value="@cat">@cat</option>
+                                }
+                        </InputSelect>
+                    </label>
+                </div>
+
+                 <div class="form-group">
+                    <label class="w-100">
+                        Risk evaluation:
+                        <InputNumber @bind-Value="@Risk.RiskEvaluation" class="form-control"/>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="w-100">
+                        State:
+                        <InputSelect @bind-Value="@Risk.State" class="form-control">
+                               @foreach (var cat in Enum.GetValues(typeof(State)))
+                                {
+                                    <option value="@cat">@cat</option>
+                                }
+                        </InputSelect>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="w-100">
+                        Created date:
+                        <InputDate @bind-Value="@Risk.CreatedDate" class="form-control"/>
+                    </label>
+                </div>
+
+                  <div class="form-group">
+                    <label class="w-100">
+                        Modified state date:
+                        <InputDate @bind-Value="@Risk.ModifiedStateDate" class="form-control"/>
+                    </label>
+                </div>
+
+                  <div class="form-group">
+                    <label class="w-100">
+                        Reaction date:
+                        <InputDate @bind-Value="@Risk.ReactionDate" class="form-control"/>
+                    </label>
+                </div>
+
+              
+            </div>
+        </div>
+
+        <hr>
+        <button type="submit" class="btn btn-success" style="margin-bottom: 2.5em">Add</button>
+</EditForm>
+        <button  class="btn btn-primary"  @onclick="@Cancel" style="margin-bottom: 2.5em">Cancel</button>
+ </div>
+
+
+@code {
+    RiskEntity Risk = new RiskEntity();
+   
+    private async Task Save()
+    {
+         await riskService.InsertRiskAsync(Risk);
+         NavigationManager.NavigateTo("Risks");
+    }
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("Risks");
+    }
+}
