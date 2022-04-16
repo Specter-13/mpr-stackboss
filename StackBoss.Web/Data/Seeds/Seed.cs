@@ -11,31 +11,24 @@ namespace StackBoss.Web.Data.Seeds
 {
     public static class Seed
     {
-        public static void SeedUsers(this ModelBuilder builder)  
-        {  
-            IdentityUser user = new IdentityUser()  
-            {  
-                Id = "b74ddd14-6340-4840-95c2-db12554843e5",  
-                UserName = "Admin",  
-                Email = "admin@admin.com",  
-                LockoutEnabled = false,  
-                PhoneNumber = "1234567890"  
-            };  
-  
-            PasswordHasher<IdentityUser> passwordHasher = new PasswordHasher<IdentityUser>();  
-            passwordHasher.HashPassword(user, "admin123");  
-  
-            builder.Entity<IdentityUser>().HasData(user);  
-        }  
+        public static void SeedUsers(UserManager<IdentityUser> userManager)
+        {
+            if (userManager.FindByEmailAsync("admin@admin.com").Result==null)
+            {
+                IdentityUser user = new IdentityUser
+                {
+                    UserName = "admin@admin.com",
+                    Email = "admin@admin.com"
+                };
 
-        public static void SeedRoles(this ModelBuilder builder)  
-        {  
-            builder.Entity<IdentityRole>().HasData(  
-                new IdentityRole() { Id = "fab4fac1-c546-41de-aebc-a14da6895711", Name = "Admin", ConcurrencyStamp = "1", NormalizedName = "Admin" },  
-                new IdentityRole() { Id = "c7b013f0-5201-4317-abd8-c211f91b7330", Name = "HR", ConcurrencyStamp = "2", NormalizedName = "Human Resource" }  
-                );  
-        }  
+                IdentityResult result = userManager.CreateAsync(user, "admin").Result;
 
+                if (result.Succeeded)
+                {
+                    userManager.AddToRoleAsync(user, "Admin").Wait();
+                }
+            }       
+        }   
         public static void SeedRisks(this ModelBuilder modelBuilder)
         {
              modelBuilder.Entity<RiskEntity>(entity =>

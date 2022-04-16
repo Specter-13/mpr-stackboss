@@ -13,7 +13,7 @@ namespace StackBoss.Web.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Category = table.Column<int>(type: "int", nullable: false),
                     Threat = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -34,15 +34,30 @@ namespace StackBoss.Web.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "92d3830d-6158-49dc-9043-34a8d7f16cf1", "13f29a3d-6417-49db-8936-36f6e917b859", "Admin", "ADMIN" });
+
+            migrationBuilder.InsertData(
                 table: "RiskTable",
                 columns: new[] { "Id", "Category", "Consequences", "CreatedDate", "Description", "ModifiedStateDate", "Name", "Owner", "Probability", "Reaction", "ReactionDate", "RiskEvaluation", "Starters", "State", "Threat" },
-                values: new object[] { 1, 2, 4, new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test bussiness risk", new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Risk of bankruptcy", "Ing. Jozko Mrkvicka", 3, "Change staff, project reset", new DateTime(2022, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 12, "Project wasn't finished successfuly", 1, "Loosing all of money" });
+                values: new object[,]
+                {
+                    { 1, 2, 4, new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test bussiness risk", new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Risk of bankruptcy", "Ing. Jozko Mrkvicka", 3, "Change staff, project reset", new DateTime(2022, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 12, "Project wasn't finished successfuly", 1, "Loosing all of money" },
+                    { 2, 3, 4, new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test extern risk", new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Risk of Fire", "Ing. Jozko Mrkvicka", 3, "Change staff, project reset", new DateTime(2022, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 12, "Project wasn't finished successfuly", 1, "Loosing all of money" },
+                    { 3, 2, 4, new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Test bussiness risk", new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), "Risk of Lost Data", "Ing. Jozko Mrkvicka", 3, "Change staff, project reset", new DateTime(2022, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 12, "Project wasn't finished successfuly", 1, "Loosing all of money" }
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "RiskTable");
+
+            migrationBuilder.DeleteData(
+                table: "AspNetRoles",
+                keyColumn: "Id",
+                keyValue: "92d3830d-6158-49dc-9043-34a8d7f16cf1");
         }
     }
 }

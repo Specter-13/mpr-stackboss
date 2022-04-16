@@ -44,6 +44,15 @@ namespace StackBoss.Web.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "92d3830d-6158-49dc-9043-34a8d7f16cf1",
+                            ConcurrencyStamp = "13f29a3d-6417-49db-8936-36f6e917b859",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -242,6 +251,7 @@ namespace StackBoss.Web.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Owner")
@@ -282,6 +292,42 @@ namespace StackBoss.Web.Data.Migrations
                             Description = "Test bussiness risk",
                             ModifiedStateDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Risk of bankruptcy",
+                            Owner = "Ing. Jozko Mrkvicka",
+                            Probability = 3,
+                            Reaction = "Change staff, project reset",
+                            ReactionDate = new DateTime(2022, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RiskEvaluation = 12,
+                            Starters = "Project wasn't finished successfuly",
+                            State = 1,
+                            Threat = "Loosing all of money"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Category = 3,
+                            Consequences = 4,
+                            CreatedDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Test extern risk",
+                            ModifiedStateDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Risk of Fire",
+                            Owner = "Ing. Jozko Mrkvicka",
+                            Probability = 3,
+                            Reaction = "Change staff, project reset",
+                            ReactionDate = new DateTime(2022, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RiskEvaluation = 12,
+                            Starters = "Project wasn't finished successfuly",
+                            State = 1,
+                            Threat = "Loosing all of money"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Category = 2,
+                            Consequences = 4,
+                            CreatedDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Test bussiness risk",
+                            ModifiedStateDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Risk of Lost Data",
                             Owner = "Ing. Jozko Mrkvicka",
                             Probability = 3,
                             Reaction = "Change staff, project reset",

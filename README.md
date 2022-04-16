@@ -16,4 +16,8 @@ Application is based on .net 5
     - click on apply migration button
     - reload browser
 
+- login:
+    - email: admin@admin.com
+    - passwordL: admin
+
 
