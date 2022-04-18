@@ -28,11 +28,33 @@ namespace StackBoss.Web.Data.Seeds
                     userManager.AddToRoleAsync(user, "Admin").Wait();
                 }
             }       
-        }   
+        } 
+
+         public static void SeedProjects(this ModelBuilder modelBuilder)
+        {
+             modelBuilder.Entity<ProjectEntity>(entity =>
+            {
+                entity.HasKey(x => x.Id);
+                entity.HasMany(x => x.RiskList);
+                 entity.HasData(new ProjectEntity()
+                {
+                     Id = 1,
+                     Name = "Medical IS",
+                     Description = "Information system for Hospital in Brno",
+                     Manager = "Ing. Jan Honza",
+                     Staff = "Lukas Kudlicka, Michal Kovac",
+                     CustomId = "P_001"
+
+                });
+            });
+         }
+        
         public static void SeedRisks(this ModelBuilder modelBuilder)
         {
              modelBuilder.Entity<RiskEntity>(entity =>
             {
+                entity.HasKey(x => x.Id);
+                entity.HasOne(x => x.Project);
                 entity.HasData(new RiskEntity()
                 { 
                  Id = 1,
@@ -50,6 +72,8 @@ namespace StackBoss.Web.Data.Seeds
                  CreatedDate = new DateTime(2021,7,10),
                  ModifiedStateDate = new DateTime(2021,7,10),
                  ReactionDate = new DateTime(2022,9,20),
+                 ProjectId = 1,
+                 CustomId = "P001_R01"
                  
                 });
                 entity.HasData(new RiskEntity()
@@ -69,6 +93,8 @@ namespace StackBoss.Web.Data.Seeds
                  CreatedDate = new DateTime(2021,7,10),
                  ModifiedStateDate = new DateTime(2021,7,10),
                  ReactionDate = new DateTime(2022,9,20),
+                 ProjectId = 1,
+                 CustomId = "P001_R02"
                  
                 });
                 entity.HasData(new RiskEntity()
@@ -88,6 +114,8 @@ namespace StackBoss.Web.Data.Seeds
                  CreatedDate = new DateTime(2021,7,10),
                  ModifiedStateDate = new DateTime(2021,7,10),
                  ReactionDate = new DateTime(2022,9,20),
+                 ProjectId = 1,
+                 CustomId = "P001_R03"
                  
                 });
             });

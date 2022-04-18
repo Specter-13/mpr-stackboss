@@ -48,6 +48,7 @@ namespace StackBoss.Web
             services.AddDatabaseDeveloperPageExceptionFilter();
  
             services.AddScoped<RiskService>();
+            services.AddScoped<ProjectService>();
             services.AddBlazm();
             services.Configure<IdentityOptions>(options =>
 {

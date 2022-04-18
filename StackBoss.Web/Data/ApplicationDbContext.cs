@@ -20,10 +20,12 @@ namespace StackBoss.Web.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.SeedRisks();
+            modelBuilder.SeedProjects();
             modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "Admin".ToUpper() });
            
           
         }
         public DbSet<RiskEntity> RiskTable { get; set; }
+        public DbSet<ProjectEntity> ProjectTable { get; set; }
     }
 }

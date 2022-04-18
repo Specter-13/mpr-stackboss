@@ -26,6 +26,10 @@ namespace StackBoss.Web.Data.Entities
         public State State { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedStateDate { get; set; }
-        public DateTime ReactionDate { get; set; }   
+        public DateTime ReactionDate { get; set; }  
+        [Required]
+        public int ProjectId {get; set; }
+        public string CustomId {get; set; }
+        public ProjectEntity Project { get; set;}
     }
 }

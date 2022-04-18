@@ -34,8 +34,8 @@ namespace StackBoss.Web.Data.Services
 
         public async Task<RiskEntity> GetRiskAsync(int Id)
         {
-            RiskEntity employee = await _appDBContext.RiskTable.FirstOrDefaultAsync(c => c.Id.Equals(Id));
-            return employee;
+            RiskEntity risk = await _appDBContext.RiskTable.FirstOrDefaultAsync(c => c.Id.Equals(Id));
+            return risk;
         }
 
 

@@ -1,0 +1,53 @@
+﻿@page "/Risk/{Id}"
+@inject RiskService riskService
+@inject NavigationManager NavigationManager
+
+@if(Risk == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+<h1>@Risk.CustomId</h1>
+<h1>@Risk.Name</h1>
+
+<h2>Description: </h2>
+<p>@Risk.Description</p>
+
+<h2>Manager: </h2>
+<p>@Risk.Category</p>
+
+<h2>Threat: </h2>
+<p>@Risk.Threat</p>
+
+
+<h2>Starters: </h2>
+<p>@Risk.Starters</p>
+
+
+<h2>Reaction: </h2>
+<p>@Risk.Reaction</p>
+
+<h2>Assigned to project:</h2>
+<p>@Risk.Project.Name</p>
+  
+}
+<button class="btn btn-primary" @onclick="() => OnEditClicked(Risk.Id)">Edit</button>
+
+@code
+{
+    [Parameter]
+    public string Id { get; set; }
+
+    public RiskEntity Risk { get; set; }
+
+   
+    private void OnEditClicked(int id)
+    {
+        NavigationManager.NavigateTo($"/EditRisk/{id}");
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        Risk = await riskService.GetRiskAsync(Convert.ToInt32(Id));
+    }
+}

@@ -17,6 +17,7 @@ else
     <BlazmGrid Data="RiskList" PageSize="10"  Sortable="true" >
     <GridColumns>
         <GridColumn Field="@nameof(RiskEntity.Id)"></GridColumn>
+         <GridColumn Field="@nameof(RiskEntity.CustomId)"></GridColumn>
         <GridColumn Field="@nameof(RiskEntity.Name)"  CanFilter="true" ></GridColumn>
         <GridColumn Field="@nameof(RiskEntity.Category)"  CanFilter="true"></GridColumn>
         <GridColumn>
@@ -41,7 +42,7 @@ else
 
     private void OnDetailClicked(RiskEntity context)
     {
-         NavigationManager.NavigateTo($"EditRisk/{context.Id}");
+         NavigationManager.NavigateTo($"Risk/{context.Id}");
 
     }
     private void OnDeleteClicked(RiskEntity context)

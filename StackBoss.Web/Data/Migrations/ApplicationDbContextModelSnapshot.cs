@@ -48,8 +48,8 @@ namespace StackBoss.Web.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "92d3830d-6158-49dc-9043-34a8d7f16cf1",
-                            ConcurrencyStamp = "13f29a3d-6417-49db-8936-36f6e917b859",
+                            Id = "ed3c3a1e-15f7-42e6-ae4c-1f70275bbd56",
+                            ConcurrencyStamp = "dd0dedc2-67cd-4777-97b5-88b1c9d1f190",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -228,6 +228,45 @@ namespace StackBoss.Web.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("StackBoss.Web.Data.Entities.ProjectEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CustomId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Manager")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Staff")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProjectTable");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CustomId = "P_001",
+                            Description = "Information system for Hospital in Brno",
+                            Manager = "Ing. Jan Honza",
+                            Name = "Medical IS",
+                            Staff = "Lukas Kudlicka, Michal Kovac"
+                        });
+                });
+
             modelBuilder.Entity("StackBoss.Web.Data.Entities.RiskEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -244,6 +283,9 @@ namespace StackBoss.Web.Data.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("CustomId")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -258,6 +300,9 @@ namespace StackBoss.Web.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Probability")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProjectId")
                         .HasColumnType("int");
 
                     b.Property<string>("Reaction")
@@ -280,6 +325,8 @@ namespace StackBoss.Web.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ProjectId");
+
                     b.ToTable("RiskTable");
 
                     b.HasData(
@@ -289,11 +336,13 @@ namespace StackBoss.Web.Data.Migrations
                             Category = 2,
                             Consequences = 4,
                             CreatedDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CustomId = "P001_R01",
                             Description = "Test bussiness risk",
                             ModifiedStateDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Risk of bankruptcy",
                             Owner = "Ing. Jozko Mrkvicka",
                             Probability = 3,
+                            ProjectId = 1,
                             Reaction = "Change staff, project reset",
                             ReactionDate = new DateTime(2022, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RiskEvaluation = 12,
@@ -307,11 +356,13 @@ namespace StackBoss.Web.Data.Migrations
                             Category = 3,
                             Consequences = 4,
                             CreatedDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CustomId = "P001_R02",
                             Description = "Test extern risk",
                             ModifiedStateDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Risk of Fire",
                             Owner = "Ing. Jozko Mrkvicka",
                             Probability = 3,
+                            ProjectId = 1,
                             Reaction = "Change staff, project reset",
                             ReactionDate = new DateTime(2022, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RiskEvaluation = 12,
@@ -325,11 +376,13 @@ namespace StackBoss.Web.Data.Migrations
                             Category = 2,
                             Consequences = 4,
                             CreatedDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CustomId = "P001_R03",
                             Description = "Test bussiness risk",
                             ModifiedStateDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Risk of Lost Data",
                             Owner = "Ing. Jozko Mrkvicka",
                             Probability = 3,
+                            ProjectId = 1,
                             Reaction = "Change staff, project reset",
                             ReactionDate = new DateTime(2022, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             RiskEvaluation = 12,
@@ -388,6 +441,22 @@ namespace StackBoss.Web.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("StackBoss.Web.Data.Entities.RiskEntity", b =>
+                {
+                    b.HasOne("StackBoss.Web.Data.Entities.ProjectEntity", "Project")
+                        .WithMany("RiskList")
+                        .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Project");
+                });
+
+            modelBuilder.Entity("StackBoss.Web.Data.Entities.ProjectEntity", b =>
+                {
+                    b.Navigation("RiskList");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,72 @@
+﻿@page "/Project/{Id}"
+@inject ProjectService projectService
+@inject NavigationManager NavigationManager
+
+
+
+@if(Project == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+<h1>@Project.Name</h1>
+
+<h2>Description: </h2>
+<p>@Project.Description</p>
+<h2>Manager: </h2>
+<p>@Project.Manager</p>
+<h2>Staff: </h2>
+<p>@Project.Staff</p>
+
+    
+    @if(Project.RiskList != null)
+    {
+        <h2>Risks of Projects:</h2>
+          <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Name</th>
+                      <th scope="col">Category</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      @foreach(var risk in Project.RiskList)
+                      {
+                    <tr>
+                      <th>
+                          @risk.Name 
+                      </th>
+                      <td>@risk.Category</td>
+                      <td>  <button class="btn btn-primary" @onclick="() => OnDetailClicked(risk.Id)">Detail</button></td>
+
+
+                    </tr>
+                    }
+                  </tbody>
+              </table>
+       
+    }
+}
+<button class="btn btn-primary" @onclick="() => OnEditClicked(Project.Id)">Edit</button>
+
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    ProjectEntity Project = new ProjectEntity();
+
+    private void OnDetailClicked(int id)
+    {
+        NavigationManager.NavigateTo($"/EditRisk/{id}");
+    }
+    private void OnEditClicked(int id)
+    {
+        NavigationManager.NavigateTo($"/EditProject/{id}");
+    }
+    protected override async Task OnInitializedAsync()
+    {
+        Project = await projectService.GetProjectAsync(Convert.ToInt32(Id));
+    }
+}
