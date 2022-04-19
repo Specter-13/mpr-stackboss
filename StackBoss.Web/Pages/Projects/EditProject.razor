@@ -55,8 +55,10 @@
           <table class="table">
                   <thead>
                     <tr>
+                      <th scope="col">Id</th>
                       <th scope="col">Name</th>
                       <th scope="col">Category</th>
+                      <th scope="col">Date of creation</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -65,9 +67,11 @@
                       {
                     <tr>
                       <th>
-                          @risk.Name 
+                          @risk.CustomId 
                       </th>
+                       <td>@risk.Name</td>
                       <td>@risk.Category</td>
+                      <td>@risk.CreatedDate.ToString("dd.MM.yyyy")</td>
                      <td> <button class="btn btn-danger" @onclick="() => OnDeleteRiskClicked(risk)"><i class="far fa-trash-alt"></i></button></td>
 
 

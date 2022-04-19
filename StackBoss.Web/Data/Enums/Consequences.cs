@@ -7,10 +7,16 @@ namespace StackBoss.Web.Data.Enums
 {
     public enum Consequences
     {
-        Tiny = 1,
-        Small = 2,
-        Notable = 3,
-        Critical = 4,
-        Catastrophic = 5
+        Zero = 0,
+        One = 1 ,
+        Two = 2,
+        Three = 3,
+        Four = 4,
+        Five = 5,
+        Six = 6,
+        Seven = 7,
+        Eight = 8,
+        Nine = 9,
+        Ten = 10
     }
 }

@@ -34,7 +34,7 @@
                                 }
                         </InputSelect>
                           <small class="form-text text-danger">
-                            <ValidationMessage For="@(() => Risk.Name)"/>
+                            <ValidationMessage For="@(() => Risk.Category)"/>
                         </small>
                     </label>
                 </div>
@@ -94,7 +94,12 @@
                  <div class="form-group">
                     <label class="w-100">
                         Risk evaluation:
-                        <InputNumber @bind-Value="@Risk.RiskEvaluation" class="form-control"/>
+
+                        @{
+                            Risk.RiskEvaluation = ((int)Risk.Consequences) * ((int)Risk.Probability);
+                         }
+                        <p class="form-control">@Risk.RiskEvaluation </p>
+                       
                     </label>
                 </div>
 

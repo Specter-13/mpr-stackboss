@@ -2,7 +2,7 @@
 @inject RiskService riskService
 @inject NavigationManager NavigationManager
 
-<h2>Detail View</h2>
+<h2>Edit Risk</h2>
 <hr />
 
 
@@ -94,10 +94,15 @@
                     </label>
                 </div>
 
-                 <div class="form-group">
+                  <div class="form-group">
                     <label class="w-100">
                         Risk evaluation:
-                        <InputNumber @bind-Value="@Risk.RiskEvaluation" class="form-control"/>
+
+                        @{
+                            Risk.RiskEvaluation = ((int)Risk.Consequences) * ((int)Risk.Probability);
+                         }
+                        <p class="form-control">@Risk.RiskEvaluation </p>
+                       
                     </label>
                 </div>
 
@@ -144,39 +149,7 @@
  <button  class="btn btn-primary"  @onclick="@Cancel" style="margin-bottom: 2.5em">Cancel</button>
  </div>
  }
-@*
-<form>
-    <div class="row">
-        <div class="col-md-8">
-            <div class="form-group">
-                <input form="Name" class="form-control" @bind="@obj.Id" />
-            </div>
-            <div class="form-group">
-                <label for="Name" class="control-label">Name</label>
-                <input form="Name" class="form-control" @bind="@obj.Name" />
-            </div>
-            <div class="form-group">
-                <label for="Gender" class="control-label"></label>
-                <select @bind="@obj.Category" class="form-control">
-                    <option value="">-Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
-            </div>
 
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-4">
-            <div class="form-group">
-                <input type="button" class="btn btn-primary" @onclick="@UpdateRisk" value="Update" />
-                <input type="button" class="btn btn-primary" @onclick="@Cancel" value="Cancel" />
-            </div>
-        </div>
-    </div>
-</form>
-*@
 @code {
     [Parameter]
     public string Id { get; set; }
@@ -189,11 +162,11 @@
     protected async Task Save()
     {
         await riskService.UpdateRiskAsync(Risk);
-        NavigationManager.NavigateTo("Risks");
+        NavigationManager.NavigateTo($"Risk/{Id}");
     }
     private void Cancel()
     {
    
-        NavigationManager.NavigateTo("Risks");
+        NavigationManager.NavigateTo($"Risk/{Id}");
     }
 }

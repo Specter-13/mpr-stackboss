@@ -26,8 +26,10 @@ else
           <table class="table">
                   <thead>
                     <tr>
+                      <th scope="col">Id</th>
                       <th scope="col">Name</th>
                       <th scope="col">Category</th>
+                      <th scope="col">Date of creation</th>
                       <th scope="col"></th>
                     </tr>
                   </thead>
@@ -36,9 +38,11 @@ else
                       {
                     <tr>
                       <th>
-                          @risk.Name 
+                          @risk.CustomId 
                       </th>
+                       <td>@risk.Name</td>
                       <td>@risk.Category</td>
+                      <td>@risk.CreatedDate.ToString("dd.MM.yyyy")</td>
                       <td>  <button class="btn btn-primary" @onclick="() => OnDetailClicked(risk.Id)">Detail</button></td>
 
 
@@ -59,7 +63,7 @@ else
 
     private void OnDetailClicked(int id)
     {
-        NavigationManager.NavigateTo($"/EditRisk/{id}");
+        NavigationManager.NavigateTo($"/Risk/{id}");
     }
     private void OnEditClicked(int id)
     {
