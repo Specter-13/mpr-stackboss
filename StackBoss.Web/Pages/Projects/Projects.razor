@@ -10,28 +10,35 @@
 else
 {
 <div class="container">
-    <div>
-        <h1>
-            <span class="HP-font">Projects</span>
-            <span>
-                <button type="button" class="btn btn-primary" @onclick="OnAddClicked">Add new Project</button>
-            </span>
-        </h1>
+    <div class="row">
+        <div class="col-md-10">
+            <h1>
+                <span class="HP-font">Projects</span>
+            </h1>
+        </div>
+        <div class="col-md-2">
+            <h1>
+                <span>
+                    <button type="button" class="btn btn-primary" @onclick="OnAddClicked">Add new Project</button>
+                </span>
+            </h1>
+        </div>
     </div>
+    <hr>
     <div class="row">
         <div class="container">
             <ul class="list-group">
                 @foreach (ProjectEntity proj in ProjectList)
                 {
                     <NavLink class="no-text-decoration seller-list" href="@($"/Project/{proj.Id}")">
-                        <li class="list-group-item d-flex justify-content-start">
+                        <li class="list-group-item d-flex justify-content-start mt-2">
                            @* <div style="width: 25% !important">
                                 <div class="img" style="background-image: url('@seller.LogoUri');">
                                 </div>
                             </div>*@
-                            <div style="width:73%; margin-top: 1.5em; padding-left: 2%">
-                                <h2 class="HP-font">@proj.Name</h2>
-                                <p >@proj.Manager</p>
+                            <div style="width:60%; margin-top: 1.5em; padding-left: 2%">
+                                <h3 class="HP-font">@proj.Name</h3>
+                                <p>@proj.Manager</p>
                             </div>
                         </li>
                     </NavLink>

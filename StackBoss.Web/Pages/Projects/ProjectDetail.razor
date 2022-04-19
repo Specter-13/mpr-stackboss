@@ -10,47 +10,43 @@
 }
 else
 {
-<h1>@Project.Name</h1>
 
-<h2>Description: </h2>
-<p>@Project.Description</p>
-<h2>Manager: </h2>
-<p>@Project.Manager</p>
-<h2>Staff: </h2>
-<p>@Project.Staff</p>
+    <h1>@Project.Name</h1>
+    <p>@Project.Manager</p>
+    <p>@Project.Staff</p>
+    <hr/>
+    <p>@Project.Description</p>
 
     
     @if(Project.RiskList != null)
     {
-        <h2>Risks of Projects:</h2>
-          <table class="table">
-                  <thead>
+        <hr/>
+        <h3>Risks</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Date of creation</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var risk in Project.RiskList)
+                {
                     <tr>
-                      <th scope="col">Id</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Category</th>
-                      <th scope="col">Date of creation</th>
-                      <th scope="col"></th>
+                        <th>
+                            @risk.CustomId 
+                        </th>
+                        <td>@risk.Name</td>
+                        <td>@risk.Category</td>
+                        <td>@risk.CreatedDate.ToString("dd.MM.yyyy")</td>
+                        <td>  <button class="btn btn-primary" @onclick="() => OnDetailClicked(risk.Id)">Detail</button></td>
                     </tr>
-                  </thead>
-                  <tbody>
-                      @foreach(var risk in Project.RiskList)
-                      {
-                    <tr>
-                      <th>
-                          @risk.CustomId 
-                      </th>
-                       <td>@risk.Name</td>
-                      <td>@risk.Category</td>
-                      <td>@risk.CreatedDate.ToString("dd.MM.yyyy")</td>
-                      <td>  <button class="btn btn-primary" @onclick="() => OnDetailClicked(risk.Id)">Detail</button></td>
-
-
-                    </tr>
-                    }
-                  </tbody>
-              </table>
-       
+                }
+            </tbody>
+        </table>
     }
 }
 <button class="btn btn-primary" @onclick="() => OnEditClicked(Project.Id)">Edit</button>
