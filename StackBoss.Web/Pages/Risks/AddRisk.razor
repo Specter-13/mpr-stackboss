@@ -3,14 +3,17 @@
 @inject ProjectService projectService
 @inject NavigationManager NavigationManager
 
-<h2>Add Risk</h2>
-<hr />
-
 
 
 <div class="container">
 <EditForm Model="@Risk" OnValidSubmit="@Save">
         <DataAnnotationsValidator/>
+        <div class="row">
+            <div class="col-md-6">
+                <h2>New Risk</h2>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-6">
 
@@ -66,6 +69,9 @@
                         <InputText @bind-Value="@Risk.Owner" class="form-control"/>
                     </label>
                 </div>
+
+            </div>
+            <div class="col-md-6">
 
                   <div class="form-group">
                     <label class="w-100">
@@ -155,15 +161,21 @@
                         </InputSelect>
                          
                 </div>
-
               
             </div>
         </div>
 
-        <hr>
-        <button type="submit" class="btn btn-success" style="margin-bottom: 2.5em">Add</button>
+        <hr> 
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success" style="margin-bottom: 2.5em">Add</button>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end">
+                <button  class="btn btn-primary"  @onclick="@Cancel" style="margin-bottom: 2.5em">Cancel</button>
+            </div>
+        </div>
 </EditForm>
-        <button  class="btn btn-primary"  @onclick="@Cancel" style="margin-bottom: 2.5em">Cancel</button>
+        
  </div>
 
 
