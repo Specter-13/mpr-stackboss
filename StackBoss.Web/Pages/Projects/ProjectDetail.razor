@@ -1,6 +1,7 @@
 ﻿@page "/Project/{Id}"
 @inject ProjectService projectService
 @inject NavigationManager NavigationManager
+@using Web.Pages.Risks
 
 
 
@@ -51,6 +52,7 @@ else
                   </tbody>
               </table>
        
+        <RiskMatrix Project="@Project"></RiskMatrix>
     }
 }
 <button class="btn btn-primary" @onclick="() => OnEditClicked(Project.Id)">Edit</button>
