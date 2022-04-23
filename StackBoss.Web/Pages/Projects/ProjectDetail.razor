@@ -1,6 +1,7 @@
 ﻿@page "/Project/{Id}"
 @inject ProjectService projectService
 @inject NavigationManager NavigationManager
+@using Web.Pages.Risks
 
 
 
@@ -59,13 +60,19 @@ else
                             <td>@risk.Name</td>
                             <td>@risk.Category</td>
                             <td>@risk.CreatedDate.ToString("dd.MM.yyyy")</td>
-                            <td>  <button class="btn btn-primary" @onclick="() => OnDetailClicked(risk.Id)">Detail</button></td>
+                            <td>  
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-primary" @onclick="() => OnDetailClicked(risk.Id)">Detail</button>
+                                </div>
+                            </td>
                         </tr>
                     }
                 </tbody>
             </table>
+            <hr/>
+            <h3>Risk matrix</h3>
+            <RiskMatrix Project="@Project"></RiskMatrix>
         }
-
     </div>
 }
 

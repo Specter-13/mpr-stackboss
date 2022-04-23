@@ -2,37 +2,49 @@
 @inject RiskService riskService
 @inject NavigationManager NavigationManager
 
-
-<h1>List of risks</h1>
-
 @if (RiskList is null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
+    <div class="container">
 
- <button class="btn btn-primary" @onclick="() => OnAddClicked()">Add new</button>
+        <div class="row">
+            <div class="col-md-10">
+                <h1>Risks</h1>
+            </div>
+            <div class="col-md-2 d-flex justify-content-end">
+                <span>
+                    <button class="btn btn-primary" @onclick="() => OnAddClicked()">Add new</button>
+                </span>
+            </div>
+        </div>
+        <hr>
 
-    <BlazmGrid Data="RiskList" PageSize="10"  Sortable="true" >
-    <GridColumns>
-        <GridColumn Field="@nameof(RiskEntity.Id)"></GridColumn>
-         <GridColumn Field="@nameof(RiskEntity.CustomId)"></GridColumn>
-        <GridColumn Field="@nameof(RiskEntity.Name)"  CanFilter="true" ></GridColumn>
-        <GridColumn Field="@nameof(RiskEntity.Category)"  CanFilter="true"></GridColumn>
-        <GridColumn>
-    <Template>
-   
-        <button class="btn btn-primary" @onclick="() => OnDetailClicked(context as RiskEntity)">Detail</button>
-        <button class="btn btn-danger" @onclick="() => OnDeleteClicked(context as RiskEntity)"><i class="far fa-trash-alt"></i></button>
-    </Template>
-    </GridColumn>
+        <div class="row">
+            <div class="container">
 
+                <BlazmGrid Data="RiskList" PageSize="10"  Sortable="true" >
+                    <GridColumns>
+                        <GridColumn Field="@nameof(RiskEntity.Id)"></GridColumn>
+                        <GridColumn Field="@nameof(RiskEntity.CustomId)"></GridColumn>
+                        <GridColumn Field="@nameof(RiskEntity.Name)"  CanFilter="true" ></GridColumn>
+                        <GridColumn Field="@nameof(RiskEntity.Category)"  CanFilter="true"></GridColumn>
+                        <GridColumn>
+                            <Template>
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-primary" @onclick="() => OnDetailClicked(context as RiskEntity)">Detail</button>
+                                    <button class="btn btn-danger m-lg-1" @onclick="() => OnDeleteClicked(context as RiskEntity)"><i class="far fa-trash-alt"></i></button>
+                                </div>
+                            </Template>
+                        </GridColumn>
+                    </GridColumns>
+                </BlazmGrid>
 
-    </GridColumns>
-</BlazmGrid>
-
-   
+            </div>
+        </div>
+    </div>
 }
 
 
