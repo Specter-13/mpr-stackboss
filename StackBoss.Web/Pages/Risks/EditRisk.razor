@@ -2,13 +2,6 @@
 @inject RiskService riskService
 @inject NavigationManager NavigationManager
 
-<h2>Edit Risk</h2>
-<hr />
-
-
-
-
-
 @if(Risk != null)
 {
 <div class="container">
@@ -106,6 +99,8 @@
                     </label>
                 </div>
 
+            </div>
+            <div class="col-md-6">
                 <div class="form-group">
                     <label class="w-100">
                         State:
@@ -143,10 +138,16 @@
             </div>
         </div>
 
-        <hr>
-        <button type="submit" class="btn btn-success" style="margin-bottom: 2.5em">Save</button>
+        <div class="row">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success" style="margin-bottom: 2.5em">Save</button>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end">
+                <button class="btn btn-primary"  @onclick="@Cancel" style="margin-bottom: 2.5em">Cancel</button>
+            </div>
+        </div>
+
 </EditForm>
- <button  class="btn btn-primary"  @onclick="@Cancel" style="margin-bottom: 2.5em">Cancel</button>
  </div>
  }
 

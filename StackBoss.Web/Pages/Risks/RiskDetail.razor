@@ -8,31 +8,93 @@
 }
 else
 {
-<h1>@Risk.CustomId</h1>
-<h1>@Risk.Name</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h5>@Risk.Project.Name</h5>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">  
+                <h1>@Risk.Name</h1>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end">  
+                <button class="btn btn-primary" @onclick="() => OnEditClicked(Risk.Id)">Edit</button>
+            </div>
+        </div>
 
-<h2>Description: </h2>
-<p>@Risk.Description</p>
+        <hr/>
 
-<h2>Manager: </h2>
-<p>@Risk.Category</p>
+        <div class="row">
+            <div class="col-md-12">
+                <p>@Risk.Category</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>Owned by @Risk.Owner</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>@Risk.Description</p>
+            </div>
+        </div>
 
-<h2>Threat: </h2>
-<p>@Risk.Threat</p>
+        <hr/>
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Threat</h5>
+                <p>@Risk.Threat</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Starters</h5>
+                <p>@Risk.Starters</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Reaction</h5>
+                <p>@Risk.Reaction</p>
+            </div>
+        </div>
 
+        <hr/>
 
-<h2>Starters: </h2>
-<p>@Risk.Starters</p>
+        @* Name???
+        <div class="row">
+            <div class="col-md-12">
+                <p>@Risk.Probability</p>, <p>@Risk.Consequences</p>
+            </div>
+        </div>
 
+        <hr/>
+        *@
+        <div class="row">
+            <div class="col-md-12">
+                <h2>@Risk.State</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>Created @Risk.CreatedDate</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>Modified state @Risk.ModifiedStateDate</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>Reaction @Risk.ReactionDate</p>
+            </div>
+        </div>
 
-<h2>Reaction: </h2>
-<p>@Risk.Reaction</p>
-
-<h2>Assigned to project:</h2>
-<p>@Risk.Project.Name</p>
-  
+    </div> 
 }
-<button class="btn btn-primary" @onclick="() => OnEditClicked(Risk.Id)">Edit</button>
 
 @code
 {

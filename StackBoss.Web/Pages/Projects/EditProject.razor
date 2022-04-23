@@ -2,7 +2,7 @@
 @inject ProjectService projectService
 @inject RiskService riskService
 @inject NavigationManager NavigationManager
-<h3>EditProject</h3>
+
 
 <div class="container">
 <EditForm Model="@Project" OnValidSubmit="@Save">
@@ -51,7 +51,7 @@
 </EditForm>
      @if(Project.RiskList != null)
     {
-        <h2>Risks of Projects:</h2>
+        <h2>Risks</h2>
           <table class="table">
                   <thead>
                     <tr>

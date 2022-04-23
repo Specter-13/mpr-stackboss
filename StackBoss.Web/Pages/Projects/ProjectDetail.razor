@@ -11,51 +11,70 @@
 }
 else
 {
-<h1>@Project.Name</h1>
+    <div class="container">
 
-<h2>Description: </h2>
-<p>@Project.Description</p>
-<h2>Manager: </h2>
-<p>@Project.Manager</p>
-<h2>Staff: </h2>
-<p>@Project.Staff</p>
+        <div class="row">
+            <div class="col-md-6">  
+                <h1>@Project.Name</h1>
+            </div>
+            <div class="col-md-6 d-flex justify-content-end">  
+                <button class="btn btn-primary" @onclick="() => OnEditClicked(Project.Id)">Edit</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">  
+                <p>@Project.Manager</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>@Project.Staff</p>
+            </div>
+        </div>
+
+        <hr/>
+        <p>@Project.Description</p>
 
     
-    @if(Project.RiskList != null)
-    {
-        <h2>Risks of Projects:</h2>
-          <table class="table">
-                  <thead>
+        @if(Project.RiskList != null)
+        {
+            <hr/>
+            <h3>Risks</h3>
+            <table class="table">
+                <thead>
                     <tr>
-                      <th scope="col">Id</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Category</th>
-                      <th scope="col">Date of creation</th>
-                      <th scope="col"></th>
+                        <th scope="col">Id</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Date of creation</th>
+                        <th scope="col"></th>
                     </tr>
-                  </thead>
-                  <tbody>
-                      @foreach(var risk in Project.RiskList)
-                      {
-                    <tr>
-                      <th>
-                          @risk.CustomId 
-                      </th>
-                       <td>@risk.Name</td>
-                      <td>@risk.Category</td>
-                      <td>@risk.CreatedDate.ToString("dd.MM.yyyy")</td>
-                      <td>  <button class="btn btn-primary" @onclick="() => OnDetailClicked(risk.Id)">Detail</button></td>
-
-
-                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var risk in Project.RiskList)
+                    {
+                        <tr>
+                            <th>
+                                @risk.CustomId 
+                            </th>
+                            <td>@risk.Name</td>
+                            <td>@risk.Category</td>
+                            <td>@risk.CreatedDate.ToString("dd.MM.yyyy")</td>
+                            <td>  
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-primary" @onclick="() => OnDetailClicked(risk.Id)">Detail</button>
+                                </div>
+                            </td>
+                        </tr>
                     }
-                  </tbody>
-              </table>
-       
-        <RiskMatrix Project="@Project"></RiskMatrix>
-    }
+                </tbody>
+            </table>
+            <hr/>
+            <h3>Risk matrix</h3>
+            <RiskMatrix Project="@Project"></RiskMatrix>
+        }
+    </div>
 }
-<button class="btn btn-primary" @onclick="() => OnEditClicked(Project.Id)">Edit</button>
 
 @code {
     [Parameter]
