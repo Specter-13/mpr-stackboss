@@ -21,7 +21,8 @@ namespace StackBoss.Web.Data
             base.OnModelCreating(modelBuilder);
             modelBuilder.SeedRisks();
             modelBuilder.SeedProjects();
-            modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "Admin".ToUpper() });
+            modelBuilder.SeedRoles();
+            //modelBuilder.Entity<IdentityRole>().HasData(new IdentityRole { Name = "Admin", NormalizedName = "Admin".ToUpper() });
            
           
         }

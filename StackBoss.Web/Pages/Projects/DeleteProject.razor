@@ -2,7 +2,7 @@
 
 @inject ProjectService projectService
 @inject NavigationManager NavigationManager
-
+<AuthorizeView Roles="Admin,ProjectDirector" Context="Auth">
 <h2>Delete Project</h2>
 <hr />
 <form>
@@ -16,7 +16,7 @@
         </div>
     </div>
 </form>
-
+</AuthorizeView>
 @code {
     [Parameter]
     public string Id { get; set; }

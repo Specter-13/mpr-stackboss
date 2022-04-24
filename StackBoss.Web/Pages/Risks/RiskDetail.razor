@@ -2,6 +2,7 @@
 @inject RiskService riskService
 @inject NavigationManager NavigationManager
 
+<AuthorizeView Context="Auth">
 @if(Risk == null)
 {
     <p>Loading...</p>
@@ -18,9 +19,11 @@ else
             <div class="col-md-6">  
                 <h1>@Risk.Name</h1>
             </div>
+          
             <div class="col-md-6 d-flex justify-content-end">  
                 <button class="btn btn-primary" @onclick="() => OnEditClicked(Risk.Id)">Edit</button>
             </div>
+        
         </div>
 
         <hr/>
@@ -60,21 +63,31 @@ else
                 <p>@Risk.Reaction</p>
             </div>
         </div>
-
-        <hr/>
-
-        @* Name???
         <div class="row">
             <div class="col-md-12">
-                <p>@Risk.Probability</p>, <p>@Risk.Consequences</p>
+                <h5>Probability</h5>
+                <p>@Risk.Probability</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Consequences</h5>
+                <p>@Risk.Consequences</p>
+            </div>
+        </div>
+         <div class="row">
+            <div class="col-md-12">
+                <h5>Risk evaluation number</h5>
+                <p>@Risk.RiskEvaluation</p>
             </div>
         </div>
 
         <hr/>
-        *@
+
+
         <div class="row">
             <div class="col-md-12">
-                <h2>@Risk.State</h2>
+                <h2>@Risk.State State</h2>
             </div>
         </div>
         <div class="row">
@@ -95,7 +108,7 @@ else
 
     </div> 
 }
-
+</AuthorizeView>
 @code
 {
     [Parameter]

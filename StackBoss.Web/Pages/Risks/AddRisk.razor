@@ -4,7 +4,7 @@
 @inject NavigationManager NavigationManager
 
 
-
+<AuthorizeView  Context="Auth">
 <div class="container">
 <EditForm Model="@Risk" OnValidSubmit="@Save">
         <DataAnnotationsValidator/>
@@ -184,7 +184,7 @@
 </EditForm>
         
  </div>
-
+ </AuthorizeView>
 
 @code {
     RiskEntity Risk = new RiskEntity();

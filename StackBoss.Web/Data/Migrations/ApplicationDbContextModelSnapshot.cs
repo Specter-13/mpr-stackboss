@@ -48,10 +48,24 @@ namespace StackBoss.Web.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "ed3c3a1e-15f7-42e6-ae4c-1f70275bbd56",
-                            ConcurrencyStamp = "dd0dedc2-67cd-4777-97b5-88b1c9d1f190",
+                            Id = "4c660c4c-5d17-4b82-8375-b2344aa3ce81",
+                            ConcurrencyStamp = "7ead5b5b-d4c0-4a11-85da-92902deb1c72",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "95a5f2b1-1d90-48c9-89af-6be56955c52e",
+                            ConcurrencyStamp = "c615155e-4929-4a84-bc91-a7ff3f2c2eed",
+                            Name = "ProjectManager",
+                            NormalizedName = "PROJECTMANAGER"
+                        },
+                        new
+                        {
+                            Id = "47b0c2bf-b624-46f4-86f4-bf15e5f97f6f",
+                            ConcurrencyStamp = "8a74de6c-e5fb-43f6-96b2-c5561fb459c2",
+                            Name = "ProjectDirector",
+                            NormalizedName = "PROJECTDIRECTOR"
                         });
                 });
 
@@ -334,7 +348,7 @@ namespace StackBoss.Web.Data.Migrations
                         {
                             Id = 1,
                             Category = 2,
-                            Consequences = 4,
+                            Consequences = 5,
                             CreatedDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CustomId = "P001_R01",
                             Description = "Test bussiness risk",
@@ -345,7 +359,7 @@ namespace StackBoss.Web.Data.Migrations
                             ProjectId = 1,
                             Reaction = "Change staff, project reset",
                             ReactionDate = new DateTime(2022, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            RiskEvaluation = 12,
+                            RiskEvaluation = 15,
                             Starters = "Project wasn't finished successfuly",
                             State = 1,
                             Threat = "Loosing all of money"
@@ -354,18 +368,18 @@ namespace StackBoss.Web.Data.Migrations
                         {
                             Id = 2,
                             Category = 3,
-                            Consequences = 4,
+                            Consequences = 8,
                             CreatedDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CustomId = "P001_R02",
                             Description = "Test extern risk",
                             ModifiedStateDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Risk of Fire",
                             Owner = "Ing. Jozko Mrkvicka",
-                            Probability = 3,
+                            Probability = 6,
                             ProjectId = 1,
                             Reaction = "Change staff, project reset",
                             ReactionDate = new DateTime(2022, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            RiskEvaluation = 12,
+                            RiskEvaluation = 48,
                             Starters = "Project wasn't finished successfuly",
                             State = 1,
                             Threat = "Loosing all of money"
@@ -374,18 +388,18 @@ namespace StackBoss.Web.Data.Migrations
                         {
                             Id = 3,
                             Category = 2,
-                            Consequences = 4,
+                            Consequences = 10,
                             CreatedDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CustomId = "P001_R03",
                             Description = "Test bussiness risk",
                             ModifiedStateDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Risk of Lost Data",
                             Owner = "Ing. Jozko Mrkvicka",
-                            Probability = 3,
+                            Probability = 4,
                             ProjectId = 1,
                             Reaction = "Change staff, project reset",
                             ReactionDate = new DateTime(2022, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            RiskEvaluation = 12,
+                            RiskEvaluation = 40,
                             Starters = "Project wasn't finished successfuly",
                             State = 1,
                             Threat = "Loosing all of money"

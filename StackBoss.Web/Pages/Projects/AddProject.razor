@@ -3,7 +3,7 @@
 @inject RiskService riskService
 @inject NavigationManager NavigationManager
 
-
+<AuthorizeView Roles="Admin,ProjectDirector" Context="Auth">
         <div class="container">
         <EditForm Model="@Project" OnValidSubmit="@Save">
                 <DataAnnotationsValidator/>
@@ -58,7 +58,7 @@
                 </div>
             </EditForm>
         </div>
-
+</AuthorizeView>
 @code {
     ProjectEntity Project = new ProjectEntity();
     List<RiskEntity> RiskList = new List<RiskEntity>();

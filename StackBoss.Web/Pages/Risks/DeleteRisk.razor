@@ -2,7 +2,7 @@
 
 @inject RiskService riskService
 @inject NavigationManager NavigationManager
-
+<AuthorizeView Context="Auth">
 <h2>Delete Risk</h2>
 <hr />
 <h3>Are you sure want to delete this?</h3>
@@ -34,7 +34,7 @@
         </div>
     </div>
 </form>
-
+</AuthorizeView>
 @code {
     [Parameter]
     public string Id { get; set; }

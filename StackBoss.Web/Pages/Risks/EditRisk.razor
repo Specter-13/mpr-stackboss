@@ -2,6 +2,7 @@
 @inject RiskService riskService
 @inject NavigationManager NavigationManager
 
+<AuthorizeView Context="Auth">
 @if(Risk != null)
 {
 <div class="container">
@@ -150,7 +151,7 @@
 </EditForm>
  </div>
  }
-
+ </AuthorizeView>
 @code {
     [Parameter]
     public string Id { get; set; }

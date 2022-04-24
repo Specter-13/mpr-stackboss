@@ -11,6 +11,27 @@ namespace StackBoss.Web.Data.Seeds
 {
     public static class Seed
     {
+        public static void SeedRoles(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<IdentityRole>(entity =>
+            {
+                entity.HasData( new IdentityRole() 
+                { 
+                Name = "Admin", 
+                NormalizedName = "Admin".ToUpper() 
+                });
+                entity.HasData( new IdentityRole() 
+                { 
+                Name = "ProjectManager", 
+                NormalizedName = "ProjectManager".ToUpper() 
+                });
+                entity.HasData( new IdentityRole() 
+                { 
+                Name = "ProjectDirector", 
+                NormalizedName = "ProjectDirector".ToUpper() 
+                });
+            });
+        } 
         public static void SeedUsers(UserManager<IdentityUser> userManager)
         {
             if (userManager.FindByEmailAsync("admin@admin.com").Result==null)

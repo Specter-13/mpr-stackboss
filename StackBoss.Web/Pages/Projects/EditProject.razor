@@ -3,7 +3,7 @@
 @inject RiskService riskService
 @inject NavigationManager NavigationManager
 
-
+<AuthorizeView Context="Auth">
 <div class="container">
 <EditForm Model="@Project" OnValidSubmit="@Save">
         <DataAnnotationsValidator/>
@@ -82,9 +82,11 @@
        
     }
         <button  class="btn btn-primary"  @onclick="@Cancel" style="margin-bottom: 2.5em">Cancel</button>
-        <button  class="btn btn-primary"  @onclick="@Delete" style="margin-bottom: 2.5em">Delete</button>
+        <AuthorizeView Roles="Admin,ProjectDirector">
+            <button  class="btn btn-primary"  @onclick="@Delete" style="margin-bottom: 2.5em">Delete</button>
+        </AuthorizeView>
  </div>
-
+ </AuthorizeView>
 
 
 @code {

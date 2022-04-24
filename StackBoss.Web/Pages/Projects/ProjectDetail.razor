@@ -1,10 +1,10 @@
 ﻿@page "/Project/{Id}"
 @inject ProjectService projectService
 @inject NavigationManager NavigationManager
-@using Web.Pages.Risks
 
 
 
+<AuthorizeView  Context="Auth">
 @if(Project == null)
 {
     <p>Loading...</p>
@@ -40,42 +40,44 @@ else
         {
             <hr/>
             <h3>Risks</h3>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Category</th>
-                        <th scope="col">Date of creation</th>
-                        <th scope="col"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach(var risk in Project.RiskList)
-                    {
+            <div class="col card m-1" style=" height: 500px !important; overflow-y: scroll; overflow-x: hidden;">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <th>
-                                @risk.CustomId 
-                            </th>
-                            <td>@risk.Name</td>
-                            <td>@risk.Category</td>
-                            <td>@risk.CreatedDate.ToString("dd.MM.yyyy")</td>
-                            <td>  
-                                <div class="d-flex justify-content-end">
-                                    <button class="btn btn-primary" @onclick="() => OnDetailClicked(risk.Id)">Detail</button>
-                                </div>
-                            </td>
+                            <th scope="col">Id</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Date of creation</th>
+                            <th scope="col"></th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach(var risk in Project.RiskList)
+                        {
+                            <tr>
+                                <th>
+                                    @risk.CustomId 
+                                </th>
+                                <td>@risk.Name</td>
+                                <td>@risk.Category</td>
+                                <td>@risk.CreatedDate.ToString("dd.MM.yyyy")</td>
+                                <td>  
+                                    <div class="d-flex justify-content-end">
+                                        <button class="btn btn-primary" @onclick="() => OnDetailClicked(risk.Id)">Detail</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
             <hr/>
             <h3>Risk matrix</h3>
             <RiskMatrix Project="@Project"></RiskMatrix>
         }
     </div>
 }
-
+</AuthorizeView>
 @code {
     [Parameter]
     public string Id { get; set; }
