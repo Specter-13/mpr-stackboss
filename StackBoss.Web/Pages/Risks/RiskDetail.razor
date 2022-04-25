@@ -3,120 +3,141 @@
 @inject NavigationManager NavigationManager
 
 <AuthorizeView Context="Auth">
-@if(Risk == null)
-{
-    <p>Loading...</p>
-}
-else
-{
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h5>@Risk.Project.Name</h5>
+    @if (Risk == null)
+    {
+        <p>Loading...</p>
+    }
+    else
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5>@Risk.Project.Name</h5>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">  
-                <h1>@Risk.Name</h1>
-            </div>
-          
-            <div class="col-md-6 d-flex justify-content-end">  
-                <button class="btn btn-primary" @onclick="() => OnEditClicked(Risk.Id)">Edit</button>
-            </div>
-        
-        </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>@Risk.Name</h1>
+                </div>
 
-        <hr/>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <button class="btn btn-primary" @onclick="() => OnEditClicked(Risk.Id)">Edit</button>
+                </div>
+            </div>
 
-        <div class="row">
-            <div class="col-md-12">
-                <p>@Risk.Category</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p>Owned by @Risk.Owner</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p>@Risk.Description</p>
-            </div>
-        </div>
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="bold">State</div>
+                        @Risk.State
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="bold">Created</div>
+                        @Risk.CreatedDate
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="bold">Modified</div>
+                        @Risk.ModifiedStateDate
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="bold">Reaction</div>
+                        @Risk.ReactionDate
+                    </div>
+                </li>
+            </ul>
+            
+            <hr/>
 
-        <hr/>
-        <div class="row">
-            <div class="col-md-12">
-                <h5>Threat</h5>
-                <p>@Risk.Threat</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h5>Starters</h5>
-                <p>@Risk.Starters</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h5>Reaction</h5>
-                <p>@Risk.Reaction</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h5>Probability</h5>
-                <p>@Risk.Probability</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h5>Consequences</h5>
-                <p>@Risk.Consequences</p>
-            </div>
-        </div>
-         <div class="row">
-            <div class="col-md-12">
-                <h5>Risk evaluation number</h5>
-                <p>@Risk.RiskEvaluation</p>
-            </div>
-        </div>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="bold">Category</div>
+                        @Risk.Category
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="bold">Owner</div>
+                        @Risk.Owner
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="bold">Description</div>
+                        @Risk.Description
+                    </div>
+                </li>
+            </ul>
 
-        <hr/>
+            <hr/>
 
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="bold">Threat</div>
+                        @Risk.Threat
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="bold">Starters</div>
+                        @Risk.Starters
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="bold">Reaction</div>
+                        @Risk.Reaction
+                    </div>
+                </li>
 
-        <div class="row">
-            <div class="col-md-12">
-                <h2>@Risk.State State</h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p>Created @Risk.CreatedDate</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p>Modified state @Risk.ModifiedStateDate</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p>Reaction @Risk.ReactionDate</p>
-            </div>
-        </div>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="bold">Probability</div>
+                        @((int)Risk.Probability)
+                    </div>
+                </li>
 
-    </div> 
-}
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="bold">Consequences</div>
+                        @((int)Risk.Consequences)
+                    </div>
+                </li>
+
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="bold">Risk evaluation</div>
+                        @Risk.RiskEvaluation
+                    </div>
+                </li>
+            </ul>
+        </div>
+    }
 </AuthorizeView>
+
 @code
 {
     [Parameter]
-    public string Id { get; set; }
+    public string Id
+    {
+        get;
+        set;
+    }
 
-    public RiskEntity Risk { get; set; }
+    private RiskEntity Risk
+    {
+        get;
+        set;
+    }
 
-   
+
     private void OnEditClicked(int id)
     {
         NavigationManager.NavigateTo($"/EditRisk/{id}");

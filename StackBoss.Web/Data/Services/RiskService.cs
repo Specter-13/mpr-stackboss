@@ -9,9 +9,9 @@ namespace StackBoss.Web.Data.Services
 {
     public class RiskService
     {
-     
+
         private readonly ApplicationDbContext _appDBContext;
-    
+
         public RiskService(ApplicationDbContext appDBContext)
         {
             _appDBContext = appDBContext;
@@ -34,14 +34,16 @@ namespace StackBoss.Web.Data.Services
 
         public async Task<RiskEntity> GetRiskAsync(int Id)
         {
-            RiskEntity risk = await _appDBContext.RiskTable.FirstOrDefaultAsync(c => c.Id.Equals(Id));
+            RiskEntity risk = await _appDBContext.RiskTable
+                .Include(r => r.Project)
+                .FirstOrDefaultAsync(c => c.Id.Equals(Id));
             return risk;
         }
 
 
         public async Task<bool> UpdateRiskAsync(RiskEntity risk)
         {
-             _appDBContext.RiskTable.Update(risk);
+            _appDBContext.RiskTable.Update(risk);
             await _appDBContext.SaveChangesAsync();
             return true;
         }
@@ -53,5 +55,4 @@ namespace StackBoss.Web.Data.Services
             return true;
         }
     }
- }
-
+}

@@ -3,84 +3,96 @@
 @inject NavigationManager NavigationManager
 
 
+<AuthorizeView Context="Auth">
+    @if (Project == null)
+    {
+        <p>Loading...</p>
+    }
+    else
+    {
+        <div class="container">
 
-<AuthorizeView  Context="Auth">
-@if(Project == null)
-{
-    <p>Loading...</p>
-}
-else
-{
-    <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h1>@Project.Name</h1>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <button class="btn btn-primary" @onclick="() => OnEditClicked(Project.Id)">Edit</button>
+                </div>
+            </div>
 
-        <div class="row">
-            <div class="col-md-6">  
-                <h1>@Project.Name</h1>
-            </div>
-            <div class="col-md-6 d-flex justify-content-end">  
-                <button class="btn btn-primary" @onclick="() => OnEditClicked(Project.Id)">Edit</button>
-            </div>
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="bold">Manager</div>
+                        @Project.Manager
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="bold">Staff</div>
+                        @Project.Staff
+                    </div>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <div class="ms-2 me-auto">
+                        <div class="bold">Description</div>
+                        @Project.Description
+                    </div>
+                </li>
+            </ul>
+            @* <div class="row"> *@
+            @*     <div class="col-md-12"> *@
+            @*         <p>@Project.Manager</p> *@
+            @*     </div> *@
+            @* </div> *@
+            @* <div class="row"> *@
+            @*     <div class="col-md-12"> *@
+            @*         <p>@Project.Staff</p> *@
+            @*     </div> *@
+            @* </div> *@
+            @* *@
+            @* <hr/> *@
+            @* <p>@Project.Description</p> *@
+
+
+            @if (Project.RiskList != null)
+            {
+                <hr/>
+                <h3>Risks</h3>
+                <BlazmGrid Data="Project.RiskList" PageSize="10" Sortable="true">
+                    <GridColumns>
+                        <GridColumn Field="@nameof(RiskEntity.CustomId)" Title="Id"></GridColumn>
+                        <GridColumn Field="@nameof(RiskEntity.Name)" CanFilter="true"></GridColumn>
+                        <GridColumn Field="@nameof(RiskEntity.Category)" CanFilter="true"></GridColumn>
+                        <GridColumn Field="@nameof(RiskEntity.Probability)" Format="{0:d}"></GridColumn>
+                        <GridColumn Field="@nameof(RiskEntity.Consequences)" Format="{0:d}"></GridColumn>
+                        <GridColumn Field="@nameof(RiskEntity.RiskEvaluation)"></GridColumn>
+                        <GridColumn Field="@nameof(RiskEntity.CreatedDate)" Format="{0:dd.MM.yyyy}"></GridColumn>
+                        <GridColumn>
+                            <Template>
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-primary" @onclick="() => OnDetailClicked(((RiskEntity)context).Id)">Detail</button>
+                                </div>
+                            </Template>
+                        </GridColumn>
+                    </GridColumns>
+                </BlazmGrid>
+                <hr/>
+                <h3>Risk matrix</h3>
+                <RiskMatrix Project="@Project"></RiskMatrix>
+            }
         </div>
-        <div class="row">
-            <div class="col-md-12">  
-                <p>@Project.Manager</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p>@Project.Staff</p>
-            </div>
-        </div>
-
-        <hr/>
-        <p>@Project.Description</p>
-
-    
-        @if(Project.RiskList != null)
-        {
-            <hr/>
-            <h3>Risks</h3>
-            <div class="col card m-1" style=" height: 500px !important; overflow-y: scroll; overflow-x: hidden;">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Id</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Date of creation</th>
-                            <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach(var risk in Project.RiskList)
-                        {
-                            <tr>
-                                <th>
-                                    @risk.CustomId 
-                                </th>
-                                <td>@risk.Name</td>
-                                <td>@risk.Category</td>
-                                <td>@risk.CreatedDate.ToString("dd.MM.yyyy")</td>
-                                <td>  
-                                    <div class="d-flex justify-content-end">
-                                        <button class="btn btn-primary" @onclick="() => OnDetailClicked(risk.Id)">Detail</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <hr/>
-            <h3>Risk matrix</h3>
-            <RiskMatrix Project="@Project"></RiskMatrix>
-        }
-    </div>
-}
+    }
 </AuthorizeView>
+
 @code {
     [Parameter]
-    public string Id { get; set; }
+    public string Id
+    {
+        get;
+        set;
+    }
 
     ProjectEntity Project = new ProjectEntity();
 
