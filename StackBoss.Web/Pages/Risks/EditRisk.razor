@@ -105,7 +105,7 @@
                 <div class="form-group">
                     <label class="w-100">
                         State:
-                        <InputSelect @bind-Value="@Risk.State" class="form-control">
+                        <InputSelect @bind-Value="@Risk.State"  class="form-control">
                                @foreach (var cat in Enum.GetValues(typeof(State)))
                                 {
                                     <option value="@cat">@cat</option>
@@ -114,27 +114,7 @@
                     </label>
                 </div>
 
-                <div class="form-group">
-                    <label class="w-100">
-                        Created date:
-                        <InputDate @bind-Value="@Risk.CreatedDate" class="form-control"/>
-                    </label>
-                </div>
-
-                  <div class="form-group">
-                    <label class="w-100">
-                        Modified state date:
-                        <InputDate @bind-Value="@Risk.ModifiedStateDate" class="form-control"/>
-                    </label>
-                </div>
-
-                  <div class="form-group">
-                    <label class="w-100">
-                        Reaction date:
-                        <InputDate @bind-Value="@Risk.ReactionDate" class="form-control"/>
-                    </label>
-                </div>
-
+             
               
             </div>
         </div>
@@ -143,9 +123,7 @@
             <div class="col-md-6">
                 <button type="submit" class="btn btn-success" style="margin-bottom: 2.5em">Save</button>
             </div>
-          @*  <div class="col-md-6 d-flex justify-content-end">
-                <button class="btn btn-primary"  @onclick="@Cancel" style="margin-bottom: 2.5em">Cancel</button>
-            </div>*@
+         
         </div>
 
 </EditForm>
@@ -157,12 +135,22 @@
     public string Id { get; set; }
     RiskEntity Risk = new RiskEntity();
 
+
+    private State RiskStateOld;
+    private string ReactionOld;
     protected override async Task OnInitializedAsync()
     {
         Risk = await riskService.GetRiskAsync(Convert.ToInt32(Id));
+        RiskStateOld = Risk.State;
+        ReactionOld = Risk.Reaction;
     }
+
+
+
     protected async Task Save()
     {
+        if (Risk.State != RiskStateOld) Risk.ModifiedStateDate = DateTime.Now;
+        if (Risk.Reaction != ReactionOld) Risk.ReactionDate = DateTime.Now;
         await riskService.UpdateRiskAsync(Risk);
         NavigationManager.NavigateTo($"Risk/{Id}");
     }

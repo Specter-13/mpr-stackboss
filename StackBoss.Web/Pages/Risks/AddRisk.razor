@@ -129,14 +129,9 @@
                     </label>
                 </div>
 
-                <div class="form-group">
-                    <label class="w-100">
-                        Created date:
-                        <InputDate @bind-Value="@Risk.CreatedDate" class="form-control"/>
-                    </label>
-                </div>
+             
 
-                  <div class="form-group">
+                 @* <div class="form-group">
                     <label class="w-100">
                         Modified state date:
                         <InputDate @bind-Value="@Risk.ModifiedStateDate" class="form-control"/>
@@ -148,7 +143,7 @@
                         Reaction date:
                         <InputDate @bind-Value="@Risk.ReactionDate" class="form-control"/>
                     </label>
-                </div>
+                </div>*@
 
                  <div class="form-group">
                     <label class="w-100">
@@ -200,6 +195,10 @@
         private async Task Save()
         {
              Risk.ProjectId = Int32.Parse(SelectedProjectId);
+
+             Risk.CreatedDate = DateTime.Now;
+             Risk.ModifiedStateDate = DateTime.Now;
+             if (Risk.Reaction != null) Risk.ReactionDate = DateTime.Now;
              await riskService.InsertRiskAsync(Risk);
              var customProjectId = string.Format("{0:000}", Risk.ProjectId); 
              var customRiskId = string.Format("{0:00}", Risk.Id);
