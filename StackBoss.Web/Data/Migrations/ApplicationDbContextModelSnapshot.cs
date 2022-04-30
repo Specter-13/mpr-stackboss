@@ -279,6 +279,17 @@ namespace StackBoss.Web.Data.Migrations
                             Name = "Medical IS",
                             Staff = "Lukas Kudlicka, Michal Kovac"
                         });
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2,
+                            CustomId = "P_002",
+                            Description = "Information system for Andrews Constructions",
+                            Manager = "Ing. ´Michal Slivka",
+                            Name = "Engineering IS",
+                            Staff = "Peter Janosik, Michal Kutil"
+                        });
                 });
 
             modelBuilder.Entity("StackBoss.Web.Data.Entities.RiskEntity", b =>
@@ -403,7 +414,28 @@ namespace StackBoss.Web.Data.Migrations
                             Starters = "Project wasn't finished successfuly",
                             State = 1,
                             Threat = "Loosing all of money"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Category = 3,
+                            Consequences = 6,
+                            CreatedDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CustomId = "P002_R04",
+                            Description = "Test extern risk",
+                            ModifiedStateDate = new DateTime(2021, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Risk of Lost Data",
+                            Owner = "Ing. janko Hrasko",
+                            Probability = 3,
+                            ProjectId = 2,
+                            Reaction = "Change staff, project reset",
+                            ReactionDate = new DateTime(2022, 9, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            RiskEvaluation = 40,
+                            Starters = "Project wasn't finished successfuly",
+                            State = 2,
+                            Threat = "Loosing all of money"
                         });
+
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
