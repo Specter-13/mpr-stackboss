@@ -57,7 +57,7 @@ namespace StackBoss.Web.Data.Seeds
             {
                 entity.HasKey(x => x.Id);
                 entity.HasMany(x => x.RiskList);
-                 entity.HasData(new ProjectEntity()
+                entity.HasData(new ProjectEntity()
                 {
                      Id = 1,
                      Name = "Medical IS",
@@ -65,6 +65,36 @@ namespace StackBoss.Web.Data.Seeds
                      Manager = "Ing. Jan Honza",
                      Staff = "Lukas Kudlicka, Michal Kovac",
                      CustomId = "P_001"
+
+                });
+                entity.HasData(new ProjectEntity()
+                {
+                    Id = 2,
+                    Name = "Engineering IS",
+                    Description = "Information system for Andrews Constructions",
+                    Manager = "Ing. ´Michal Slivka",
+                    Staff = "Peter Janosik, Michal Kutil",
+                    CustomId = "P_002"
+
+                });
+                entity.HasData(new ProjectEntity()
+                {
+                    Id = 3,
+                    Name = "Hotel IS",
+                    Description = "Information system for Hotel Yasmin",
+                    Manager = "Ing. ´Michal Chrapko",
+                    Staff = "jakub Varga, Jakub Kulan",
+                    CustomId = "P_003"
+
+                });
+                entity.HasData(new ProjectEntity()
+                {
+                    Id = 4,
+                    Name = "Airport IS",
+                    Description = "Information system for Kosice Airport",
+                    Manager = "Ing. Ladislav Hracko",
+                    Staff = "Erik Domko, Peter Krna",
+                    CustomId = "P_004"
 
                 });
             });
@@ -139,6 +169,49 @@ namespace StackBoss.Web.Data.Seeds
                  CustomId = "P001_R03"
                  
                 });
+                entity.HasData(new RiskEntity()
+                {
+                Id = 4,
+                Name = "Risk of Hacking",
+                Description = "Test technical risk",
+                Category = Category.TechnicalRisks,
+                Threat = "Loosing all of money",
+                Starters = "Project wasn't secure enough",
+                Reaction = "Increase security",
+                Owner = "Ing. Jan Hrasko",
+                Probability = Probability.Five,
+                Consequences = Consequences.Five,
+                RiskEvaluation = ((int)Probability.Five) * ((int)Consequences.Five),
+                State = State.Potential,
+                CreatedDate = new DateTime(2021, 10, 21),
+                ModifiedStateDate = new DateTime(2021, 10, 23),
+                ReactionDate = new DateTime(2022, 8, 5),
+                ProjectId = 2,
+                CustomId = "P002_R01"
+
+                });
+                entity.HasData(new RiskEntity()
+                {
+                    Id = 5,
+                    Name = "Risk of Planning",
+                    Description = "Test project risk",
+                    Category = Category.ProjectRisks,
+                    Threat = "Loss of control of the project",
+                    Starters = "Insufficient control of employees",
+                    Reaction = "Increase employee control",
+                    Owner = "Ing. Jan Hrasko",
+                    Probability = Probability.Two,
+                    Consequences = Consequences.Seven,
+                    RiskEvaluation = ((int)Probability.Two) * ((int)Consequences.Seven),
+                    State = State.Occured,
+                    CreatedDate = new DateTime(2021, 10, 21),
+                    ModifiedStateDate = new DateTime(2021, 10, 23),
+                    ReactionDate = new DateTime(2022, 8, 5),
+                    ProjectId = 2,
+                    CustomId = "P002_R02"
+
+                });
+
             });
         }
 
