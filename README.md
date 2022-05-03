@@ -1,6 +1,6 @@
 # StackBossSystem
 Implentation of project to course MPR.
-Application is based on .net 5
+Application is based on .net 5.
 
 
 ## First start
@@ -18,6 +18,6 @@ Application is based on .net 5
 
 - login:
     - email: admin@admin.com
-    - passwordL: admin
+    - password: admin
 
 
