@@ -22,7 +22,7 @@ namespace StackBoss.Tests
         [Fact]
         public async void Projects_GetAll()
         {
-            int numberOfInterprets = 5;
+            int numberOfInterprets = 4;
 
 
             var projectList = await _projectService.GetAllProjectsAsync();
@@ -91,7 +91,7 @@ namespace StackBoss.Tests
         [Fact]
         public async void Risks_GetAll()
         {
-            int numberOfInterprets = 5;
+            int numberOfInterprets = 18;
 
 
             var riskList = await _riskService.GetAllRisksAsync();
@@ -115,7 +115,7 @@ namespace StackBoss.Tests
         [Fact]
         public async void GetRisk()
         {
-            var name = "Risk of bankruptcy";
+            var name = "Risk of Losing customers";
 
 
             var risk = await _riskService.GetRiskAsync(1);
